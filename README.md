@@ -1,2 +1,2 @@
 # PatientenList
-Simple MVVM exampl
+Simple MVVM example
