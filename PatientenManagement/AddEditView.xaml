@@ -5,10 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PatientenManagement"
         mc:Ignorable="d"
-        Title="AddEdit" Height="191" Width="320">
-        <Grid Margin="10">
-            <Grid.Resources>
-                <!-- Default settings for controls -->
+       WindowStartupLocation="CenterOwner"
+       Height="191" Width="320">
+    
+    <Window.Resources>
+        <local:ModalDialogTypeToCaption x:Key="ModalDialogTypeToCaption"/>
+        <local:ModalDialogTypeToTitle x:Key="ModalDialogTypeToTitle"/>
+        <local:OKButtonVisibility x:Key="OKButtonVisibility"/>        
+    </Window.Resources>
+    
+    <Grid Margin="10">
+            <Grid.Resources>           
+            <!-- Default settings for controls -->
                 <Style TargetType="{x:Type Label}">
                     <Setter Property="Margin" Value="0,3,5,5" />
                     <Setter Property="Padding" Value="0,0,0,5" />
@@ -47,8 +55,9 @@
 
                         <!-- Accept or Cancel -->
             <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Name="okButton" Click ="OnOkBtnClicked" IsDefault="True">OK</Button>
-                <Button Name="cancelButton" IsCancel="True">Cancel</Button>
-            </StackPanel>
+                <Button IsDefault="True" Visibility="{Binding IsEditType, Converter={StaticResource OKButtonVisibility}}" 
+                        Click ="OnOkBtnClicked">OK</Button>
+                <Button IsCancel="True" Content="{Binding IsEditType, Converter={StaticResource ModalDialogTypeToCaption}}" />
+        </StackPanel>
         </Grid >
     </Window>

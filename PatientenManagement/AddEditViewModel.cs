@@ -8,7 +8,7 @@ namespace PatientenManagement
     /// </summary>
     public partial class AddEditViewModel : Window
     {
-
+        public bool IsEditType { get; set; } = false;
         public Patient ThisPatient { get; set; } = new Patient();   
         
         public AddEditViewModel(Patient? patient = null)
@@ -16,6 +16,7 @@ namespace PatientenManagement
             ThisPatient = patient ?? ThisPatient;
             InitializeComponent();
 
+            IsEditType = patient != null;
             DataContext = this;
         }
 
@@ -24,6 +25,5 @@ namespace PatientenManagement
         {
             DialogResult = true;
         }
-
     }
 }

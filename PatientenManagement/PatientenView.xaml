@@ -5,51 +5,39 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PatientenManagement"
         mc:Ignorable="d"
-        Title="Patienten Management" Height="450" Width="800">
+        Title="Patienten Management" Height="600" Width="800">
     <Grid>
         <!--ListView Patienten -->
         <Grid.RowDefinitions>
-            <RowDefinition Height="20"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>        
         </Grid.RowDefinitions>
 
-        <Button Grid.Row="0" Click="OnAddClick">Add</Button>
-        
+        <Button Grid.Row="0" HorizontalAlignment="Left"  VerticalAlignment="Center" Width ="130" Height="40" Click="OnAddClick">Patient hinzufügen</Button>
+
         <ListView Grid.Row="1" Background="Transparent"
-         BorderThickness="0" 
-         ItemsSource="{Binding PatientenListe}"
-         MouseDoubleClick="OnMouseDoubleClick"
-          Margin="15">
-            <!--<ListView.ItemContainerStyle>
-                <Style TargetType="{x:Type ListViewItem}">
-                    <Setter Property="Background" Value="Transparent" />
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="{x:Type ListViewItem}">
-                                <ContentPresenter />
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </ListView.ItemContainerStyle>-->
-
-            <ListView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel MinHeight="200" Orientation="Vertical">
-                    </WrapPanel>
-                </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
-
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">                        
-                        <TextBlock HorizontalAlignment="Center"  Text="{Binding Name}"  Margin="5"/>
-                        <TextBlock HorizontalAlignment="Center"  Text="{Binding Vorname}" Margin="5"/>
-                        <TextBlock HorizontalAlignment="Center"  Text="{Binding Wohnort}" Margin="5"/>
-                        <Button Click ="OnRemoveClick"  Tag="{Binding}">Remove</Button>
-                    </StackPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
+             BorderThickness="0" 
+             ItemsSource="{Binding PatientenListe}"
+             MouseDoubleClick="OnMouseDoubleClick"
+              Margin="15">           
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Name" Width="200" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="Vorname" Width="200" DisplayMemberBinding="{Binding Vorname}" />
+                    <GridViewColumn Header="Wohnort" Width="200" DisplayMemberBinding="{Binding Wohnort}" />
+                    <GridViewColumn Width="80">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Löschen"
+                                       Tag="{Binding}"
+                                       Margin="0"
+                                       VerticalAlignment="Center"
+                                       Click="OnRemoveClick" /> 
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>           
         </ListView>
     </Grid>
 </Window>

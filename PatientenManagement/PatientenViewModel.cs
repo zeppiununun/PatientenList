@@ -1,5 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -7,11 +6,14 @@ using System.Windows.Input;
 namespace PatientenManagement
 {
     /// <summary>
-    /// PatientenManagement view model
+    /// Patient management view model
     /// </summary>
     public partial class PatientenViewModel : Window
     {        
-        public ObservableCollection<Patient> PatientenListe { get; set; } = new ObservableCollection<Patient>();
+        /// <summary>
+        /// patient collection
+        /// </summary>
+        public ObservableCollection<Patient> PatientenListe { get; set; } = new ObservableCollection<Patient>();       
         
         public PatientenViewModel()
         {
@@ -31,7 +33,7 @@ namespace PatientenManagement
 
         private void OnAddClick(object sender, RoutedEventArgs e)
         {
-            AddEditViewModel addPatientModalDlg = new AddEditViewModel();
+            AddEditViewModel addPatientModalDlg = new AddEditViewModel() {Title = "Patient hinzufügen", Owner = this };
             var dlgRes = addPatientModalDlg.ShowDialog();
             
             if (dlgRes is true)
@@ -41,9 +43,10 @@ namespace PatientenManagement
         }
         private void OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            //get data context of ItemTemplate
             if ((e.OriginalSource as FrameworkElement)?.DataContext is Patient patient)
             {
-                AddEditViewModel editPatientModalDlg = new AddEditViewModel(patient); 
+                AddEditViewModel editPatientModalDlg = new AddEditViewModel(patient) { Title = "Patient editieren", Owner = this }; 
                 editPatientModalDlg.ShowDialog();
             }
         }
