@@ -4,7 +4,7 @@ using System.Windows.Input;
 namespace PatientenManagement
 {
     /// <summary>
-    /// Simple implementation for ICommand. Not currently in use. Used only for a second solution with "löschen" button.
+    /// Simple implementation for ICommand. Not currently in use. Used only for the second solution with "löschen" button.
     /// </summary>
     public class RelayCommand : ICommand
     {

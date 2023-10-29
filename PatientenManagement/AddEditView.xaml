@@ -6,7 +6,9 @@
         xmlns:local="clr-namespace:PatientenManagement"
         mc:Ignorable="d"
        WindowStartupLocation="CenterOwner"
-       Height="191" Width="320">
+       ResizeMode="NoResize"
+       Height="164"
+       Width="320">
     
     <Window.Resources>
         <local:ModalDialogTypeToCaption x:Key="ModalDialogTypeToCaption"/>
@@ -14,7 +16,7 @@
         <local:OKButtonVisibility x:Key="OKButtonVisibility"/>        
     </Window.Resources>
     
-    <Grid Margin="10">
+    <Grid Margin="10,10,10,0" VerticalAlignment="Top">
             <Grid.Resources>           
             <!-- Default settings for controls -->
                 <Style TargetType="{x:Type Label}">
@@ -41,7 +43,6 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
-                <RowDefinition />
             </Grid.RowDefinitions>
 
             <Label Grid.Column="0" Grid.Row="0">Name:</Label>

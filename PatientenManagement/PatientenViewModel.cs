@@ -9,12 +9,12 @@ namespace PatientenManagement
     /// Patient management view model
     /// </summary>
     public partial class PatientenViewModel : Window
-    {        
+    {
         /// <summary>
         /// patient collection
         /// </summary>
         public ObservableCollection<Patient> PatientenListe { get; set; } = new ObservableCollection<Patient>();
-        
+
         /// <summary>
         /// Second solution. Use ICommand and relative ancestor
         /// </summary>
@@ -33,35 +33,49 @@ namespace PatientenManagement
 
             //}, obj => true);
 
-            DataContext = this;            
+            DataContext = this;
         }
 
         #region event handling
-        private void OnRemoveClick(object sender, RoutedEventArgs e) 
+        private void Button_RemoveClick(object sender, RoutedEventArgs e)
         {
-            if (sender is Button button 
+            if (sender is Button button
                 && button.Tag is Patient patient)
             {
                 PatientenListe?.Remove(patient);
             }
         }
 
-        private void OnAddClick(object sender, RoutedEventArgs e)
+        private void Button_AddClick(object sender, RoutedEventArgs e)
         {
-            AddEditViewModel addPatientModalDlg = new AddEditViewModel() {Title = "Patient hinzufügen", Owner = this };
+            AddEditViewModel addPatientModalDlg = new AddEditViewModel() { Title = "Patient hinzufügen", Owner = this };
             var dlgRes = addPatientModalDlg.ShowDialog();
-            
+
             if (dlgRes is true)
             {
                 PatientenListe.Add(addPatientModalDlg.ThisPatient);
             }
         }
-        private void OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
+
+
+        /// <summary>
+        ///  Another possible solution: binding event to listview item 
+        /// </summary>              
+        //private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        //{
+        //    if ((sender as ListViewItem)?.Content is Patient patient)
+        //    {
+        //        AddEditViewModel editPatientModalDlg = new AddEditViewModel(patient) { Title = "Patient editieren", Owner = this };
+        //        editPatientModalDlg.ShowDialog();
+        //    }
+        //}
+
+        private void ListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             //get data context of ItemTemplate
             if ((e.OriginalSource as FrameworkElement)?.DataContext is Patient patient)
             {
-                AddEditViewModel editPatientModalDlg = new AddEditViewModel(patient) { Title = "Patient editieren", Owner = this }; 
+                AddEditViewModel editPatientModalDlg = new AddEditViewModel(patient) { Title = "Patient editieren", Owner = this };
                 editPatientModalDlg.ShowDialog();
             }
         }

@@ -5,48 +5,81 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PatientenManagement"
         mc:Ignorable="d"
-        Title="Patienten Management" Height="600" Width="800">
-    <Grid>
-        <!--ListView Patienten -->
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>        
-        </Grid.RowDefinitions>
+        Title="Patienten Management" 
+        Height="600" 
+        Width="800">
+    <ScrollViewer>
+        <Grid>           
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+           
+            <Button Grid.Row="0" 
+                Margin="5 2 0 2" 
+                HorizontalAlignment="Left"  
+                VerticalAlignment="Center" 
+                Width ="130"
+                Height="40"
+                Content="Patient hinzufügen"
+                Background="DarkGreen"
+                Foreground="WhiteSmoke"
+                Click="Button_AddClick">
 
-        <Button Grid.Row="0" HorizontalAlignment="Left"  VerticalAlignment="Center" Width ="130" Height="40" Click="OnAddClick">Patient hinzufügen</Button>
-
-        <ListView Grid.Row="1" Background="Transparent"
-             BorderThickness="0" 
-             ItemsSource="{Binding PatientenListe}"
-             MouseDoubleClick="OnMouseDoubleClick"
-              Margin="15">           
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Name" Width="200" DisplayMemberBinding="{Binding Name}" />
-                    <GridViewColumn Header="Vorname" Width="200" DisplayMemberBinding="{Binding Vorname}" />
-                    <GridViewColumn Header="Wohnort" Width="200" DisplayMemberBinding="{Binding Wohnort}" />
-                    <GridViewColumn Width="80">
-                        <!---->
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <!--Second solution (pls put inside button tag attribute) 
-                                Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ListView}, 
-                                Path=DataContext.RemovePatient}"
-                                CommandParameter  ="{Binding}"
-                                -->
-                                <Button Content="Löschen"
-                                       
-                                       Tag="{Binding}"
-                                       Click="OnRemoveClick"
-                                       
-                                       Margin="0"
-                                       VerticalAlignment="Center"                                       
-                                    /> 
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                </GridView>
-            </ListView.View>           
-        </ListView>
-    </Grid>
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="12.5"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            
+            <!--ListView Patienten -->
+            <ListView Grid.Row="1"  
+                Background="Transparent"
+                BorderThickness="0" 
+                ItemsSource="{Binding PatientenListe}"
+                MouseDoubleClick="ListView_MouseDoubleClick"
+                Margin="20" 
+                Padding="10">
+                <!-- another possibility for mouse double click:
+                 attaching event to listview item
+                <ListView.ItemContainerStyle>
+                <Style TargetType="{x:Type ListViewItem}">
+                    <EventSetter Event="MouseDoubleClick" Handler="ListViewItem_MouseDoubleClick"/>
+                </Style>
+            </ListView.ItemContainerStyle>-->
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Name" Width="200" DisplayMemberBinding="{Binding Name}" />
+                        <GridViewColumn Header="Vorname" Width="200" DisplayMemberBinding="{Binding Vorname}" />
+                        <GridViewColumn Header="Wohnort" Width="200" DisplayMemberBinding="{Binding Wohnort}" />
+                        <GridViewColumn Width="80">
+                            <!---->
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <!--Another solution (put inside button tag attribute and remove click event and tag binding) 
+                            Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ListView}, 
+                            Path=DataContext.RemovePatient}"
+                            CommandParameter  ="{Binding}"
+                            -->
+                                    <Button
+                                    Content="&#xE74D;"
+                                    Width="30"
+                                    FontFamily="Segoe MDL2 Assets" 
+                                    Background="Red"
+                                    Foreground="White"
+                                    FontSize="14"
+                                    Tag="{Binding}"
+                                    Click="Button_RemoveClick"                                       
+                                    Margin="0"
+                                    VerticalAlignment="Center"                                       
+                                />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+    </ScrollViewer>
 </Window>

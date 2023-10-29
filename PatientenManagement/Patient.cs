@@ -13,22 +13,22 @@ namespace PatientenManagement
 		private string _name = string.Empty;
 
         public string Name
-		{
-			get => _name;
-			
-			set
-			{
-				_name = value;
+        {
+            get => _name;
+
+            set
+            {
+                _name = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Name)));
             }
-		}
+        }
 
         /// <summary>
         /// Vorname property
         /// </summary>
         private string _vorname = string.Empty;
 
-        public string Vorname 
+        public string Vorname
         {
             get => _vorname;
 
