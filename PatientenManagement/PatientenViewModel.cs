@@ -13,11 +13,26 @@ namespace PatientenManagement
         /// <summary>
         /// patient collection
         /// </summary>
-        public ObservableCollection<Patient> PatientenListe { get; set; } = new ObservableCollection<Patient>();       
+        public ObservableCollection<Patient> PatientenListe { get; set; } = new ObservableCollection<Patient>();
         
+        /// <summary>
+        /// Second solution. Use ICommand and relative ancestor
+        /// </summary>
+        /// public ICommand RemovePatient { get; set; }
+
         public PatientenViewModel()
         {
             InitializeComponent();
+
+            //second solution for patient removal
+
+            //RemovePatient = new RelayCommand(obj => 
+            //{
+            //    if (obj is Patient patient)
+            //        PatientenListe?.Remove(patient);
+
+            //}, obj => true);
+
             DataContext = this;            
         }
 

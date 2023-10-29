@@ -2,10 +2,15 @@
 
 namespace PatientenManagement
 {
+    /// <summary>
+    /// Patient data model
+    /// </summary>
     public class Patient : INotifyPropertyChanged
     {
+        /// <summary>
+        /// Name property
+        /// </summary>
 		private string _name = string.Empty;
-
 
         public string Name
 		{
@@ -18,6 +23,9 @@ namespace PatientenManagement
             }
 		}
 
+        /// <summary>
+        /// Vorname property
+        /// </summary>
         private string _vorname = string.Empty;
 
         public string Vorname 
@@ -31,7 +39,9 @@ namespace PatientenManagement
             }
         }
 
-
+        /// <summary>
+        /// Wohnort property 
+        /// </summary>
         private string _wohnort = string.Empty;
 
         public string Wohnort

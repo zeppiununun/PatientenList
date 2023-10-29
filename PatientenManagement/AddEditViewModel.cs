@@ -14,9 +14,10 @@ namespace PatientenManagement
         public AddEditViewModel(Patient? patient = null)
         {
             ThisPatient = patient ?? ThisPatient;
-            InitializeComponent();
-
             IsEditType = patient != null;
+            
+            InitializeComponent();
+            
             DataContext = this;
         }
 

@@ -26,13 +26,22 @@
                     <GridViewColumn Header="Vorname" Width="200" DisplayMemberBinding="{Binding Vorname}" />
                     <GridViewColumn Header="Wohnort" Width="200" DisplayMemberBinding="{Binding Wohnort}" />
                     <GridViewColumn Width="80">
+                        <!---->
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
+                                <!--Second solution (pls put inside button tag attribute) 
+                                Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ListView}, 
+                                Path=DataContext.RemovePatient}"
+                                CommandParameter  ="{Binding}"
+                                -->
                                 <Button Content="Löschen"
+                                       
                                        Tag="{Binding}"
+                                       Click="OnRemoveClick"
+                                       
                                        Margin="0"
-                                       VerticalAlignment="Center"
-                                       Click="OnRemoveClick" /> 
+                                       VerticalAlignment="Center"                                       
+                                    /> 
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
