@@ -9,12 +9,12 @@
         Height="600" 
         Width="800">
     <ScrollViewer>
-        <Grid>           
+        <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-           
+
             <Button Grid.Row="0" 
                 Margin="5 2 0 2" 
                 HorizontalAlignment="Left"  
@@ -32,7 +32,7 @@
                     </Style>
                 </Button.Resources>
             </Button>
-            
+
             <!--ListView Patienten -->
             <ListView Grid.Row="1"  
                 Background="Transparent"

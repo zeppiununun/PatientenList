@@ -58,6 +58,16 @@ namespace PatientenManagement
         }
 
 
+        private void ListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            //get data context of ItemTemplate
+            if ((e.OriginalSource as FrameworkElement)?.DataContext is Patient patient)
+            {
+                AddEditViewModel editPatientModalDlg = new AddEditViewModel(patient) { Title = "Patient editieren", Owner = this };
+                editPatientModalDlg.ShowDialog();
+            }
+        }
+
         /// <summary>
         ///  Another possible solution: binding event to listview item 
         /// </summary>              
@@ -70,15 +80,7 @@ namespace PatientenManagement
         //    }
         //}
 
-        private void ListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            //get data context of ItemTemplate
-            if ((e.OriginalSource as FrameworkElement)?.DataContext is Patient patient)
-            {
-                AddEditViewModel editPatientModalDlg = new AddEditViewModel(patient) { Title = "Patient editieren", Owner = this };
-                editPatientModalDlg.ShowDialog();
-            }
-        }
+
         #endregion
     }
 }

@@ -11,8 +11,8 @@
        Width="320">
     
     <Window.Resources>
-        <local:ModalDialogTypeToCaption x:Key="ModalDialogTypeToCaption"/>
-        <local:ModalDialogTypeToTitle x:Key="ModalDialogTypeToTitle"/>
+        <!-- Value converters -->
+            <local:ModalDialogTypeToCaption x:Key="ModalDialogTypeToCaption"/>
         <local:OKButtonVisibility x:Key="OKButtonVisibility"/>        
     </Window.Resources>
     
@@ -54,7 +54,7 @@
             <Label Grid.Column="0" Grid.Row="2">Wohnort:</Label>
             <TextBox Text="{Binding ThisPatient.Wohnort, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="2" />
 
-                        <!-- Accept or Cancel -->
+             <!-- Accept or Cancel buttons-->
             <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button IsDefault="True" Visibility="{Binding IsEditType, Converter={StaticResource OKButtonVisibility}}" 
                         Click ="OnOkBtnClicked">OK</Button>

@@ -13,7 +13,7 @@ namespace PatientenManagement
         public bool IsEditType { get; set; } = false;
 
         /// <summary>
-        /// patient being processed (either existing or a new one)
+        /// patient instance being processed/bound to AddEditView (either existing or a new one)
         /// </summary>
         public Patient ThisPatient { get; set; } = new Patient();
 
